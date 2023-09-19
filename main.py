@@ -6,47 +6,15 @@ from audioURL import AudioURL
 
 app = FastAPI()
 
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  
-    allow_headers=["*"],  
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-
-
-# # Function to save video and audio
-# def save_video(url, video_filename):
-#     youtubeObject = YouTube(url)
-#     youtubeObject = youtubeObject.streams.get_highest_resolution()
-#     try:
-#         youtubeObject.download()
-#     except:
-#         return None
-#     return video_filename
-
-# def save_audio(url):
-#     yt = YouTube(url)
-#     video = yt.streams.filter(only_audio=True).first()
-#     out_file = video.download()
-#     base, ext = os.path.splitext(out_file)
-#     file_name = base + '.mp3'
-#     try:
-#         os.rename(out_file, file_name)
-#     except:
-#         os.remove(file_name)
-#         os.rename(out_file, file_name)
-#     return file_name
-
-
-# # Function to remove temporaty files
-# def remove_temporary_files(file_path):
-#         try:     
-#             if os.path.exists(file_path):
-#                 os.remove(file_path)
-#                 print(f"Successfully removed file: {file_path}")
-#         except Exception as e:
-#             print(f"Error removing files: {e}")
 
 
 # Loading the Whisper model
