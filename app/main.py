@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pytube import YouTube
 from pydub import AudioSegment
 from whisper_jax import FlaxWhisperPipline
+import jax.numpy as jnp
 import os
 
 
@@ -26,7 +27,7 @@ class VideoProcessor:
 
     def load_model(self):
         # Load the Whisper model using FlaxWhisperPipline
-        pipeline = FlaxWhisperPipline("openai/whisper-base")
+        pipeline = FlaxWhisperPipline("openai/whisper-base", dtype=jnp.bfloat16)
         return pipeline
 
     def save_video(self, url, video_filename):
