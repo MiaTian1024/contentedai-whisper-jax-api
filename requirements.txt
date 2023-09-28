@@ -60,3 +60,4 @@ uvicorn==0.23.2
 whisper-jax @ git+https://github.com/sanchit-gandhi/whisper-jax.git@45bff9df78a6a4f04144f405c74cf0ffa4c5fb52
 yarl==1.9.2
 zipp==3.17.0
+cached_property
