@@ -106,6 +106,8 @@ async def process_video(url: str):
     audio_tensor = torch.tensor(audio_filename, device=device)
     transcript_result = video_processor.transcription(audio_tensor)
 
+    # transcript_result = video_processor.transcription(audio_filename)
+
     response_data = {
         'video_url': video_filename,
         'transcript': transcript_result['text']
