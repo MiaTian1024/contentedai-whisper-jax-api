@@ -1,6 +1,4 @@
 FROM python:3
-FROM nvidia/cuda:11.0-base
-
 
 # Install FFmpeg
 RUN apt-get update && \
@@ -8,6 +6,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
+
+RUN pip install -U "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt

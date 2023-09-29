@@ -63,3 +63,5 @@ zipp==3.17.0
 cached_property
 uvicorn==0.23.2
 ffmpeg-python
+torch
+flask

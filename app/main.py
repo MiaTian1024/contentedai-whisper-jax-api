@@ -5,7 +5,9 @@ from pydub import AudioSegment
 from whisper_jax import FlaxWhisperPipline
 import jax.numpy as jnp
 import os
+import torch
 
+torch.cuda.set_device(0)
 
 app = FastAPI()
 
@@ -26,6 +28,7 @@ class VideoProcessor:
     def load_model(self):
         # Load the Whisper model using FlaxWhisperPipline
         pipeline = FlaxWhisperPipline("openai/whisper-base", dtype=jnp.bfloat16)
+        pipeline.to('cuda')
         return pipeline
 
     def save_video(self, url, video_filename):
