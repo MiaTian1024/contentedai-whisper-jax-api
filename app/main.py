@@ -6,7 +6,6 @@ from whisper_jax import FlaxWhisperPipline
 import jax.numpy as jnp
 import os
 
-
 app = FastAPI()
 
 
