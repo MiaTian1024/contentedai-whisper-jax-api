@@ -7,6 +7,7 @@ import jax.numpy as jnp
 import os
 import torch
 
+
 torch.cuda.set_device(0)
 
 app = FastAPI()
