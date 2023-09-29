@@ -15,7 +15,7 @@ filelock==3.12.4
 flax==0.7.4
 frozenlist==1.4.0
 fsspec==2023.9.1
-fastapi==0.103.2
+fastapi==0.103.1
 h11==0.14.0
 huggingface-hub==0.17.2
 idna==3.4
@@ -35,8 +35,8 @@ optax==0.1.7
 orbax-checkpoint==0.4.0
 packaging==23.1
 protobuf==4.24.3
-pydantic==2.4.2
-pydantic_core==2.10.1
+pydantic==2.3.0
+pydantic_core==2.6.3
 pydub==0.25.1
 Pygments==2.16.1
 python-dotenv==1.0.0
@@ -57,7 +57,6 @@ tqdm==4.66.1
 transformers==4.33.2
 typing_extensions==4.8.0
 urllib3==2.0.5
-uvicorn==0.23.2
 whisper-jax @ git+https://github.com/sanchit-gandhi/whisper-jax.git@45bff9df78a6a4f04144f405c74cf0ffa4c5fb52
 yarl==1.9.2
 zipp==3.17.0
