@@ -1,5 +1,5 @@
 FROM python:3
-FROM nvidia/cuda:12.2-base
+FROM nvidia/cuda:11.0-base
 
 # Install FFmpeg
 RUN apt-get update && \
