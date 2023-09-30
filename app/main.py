@@ -5,6 +5,14 @@ from pydub import AudioSegment
 from whisper_jax import FlaxWhisperPipline
 import jax.numpy as jnp
 import os
+from pydantic import BaseModel
+
+
+class FileUpload(BaseModel):
+    pass
+
+class URL(BaseModel):
+    url: str
 
 
 app = FastAPI()
@@ -86,8 +94,9 @@ async def root():
     return {"message": "Welcome to my API"}
 
 @app.post("/process/")
-async def process_video(url: str):
+async def process_video(content: URL):
     # Process a video from a given URL
+    url = content.url
     if not url:
         raise HTTPException(status_code=400, detail="Invalid URL")
 
@@ -112,9 +121,13 @@ async def process_video(url: str):
     return response_data
 
 
+@app.get("/upload/")
+def getUpload():
+    return {"message": "Welcome to upload a file."}
+
+
 @app.post("/upload/")
-def upload(file: UploadFile = File(...)):
-    # Upload a file and process it
+async def upload(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
         with open(file.filename, 'wb') as f:
