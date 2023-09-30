@@ -5,8 +5,8 @@ from pydub import AudioSegment
 from whisper_jax import FlaxWhisperPipline
 import jax.numpy as jnp
 import os
-import torch
-from torch import nn
+# import torch
+# from torch import nn
 
 
 
@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 # Check if CUDA is available
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 class VideoProcessor:
     def __init__(self):
@@ -104,10 +104,10 @@ async def process_video(url: str):
         raise HTTPException(status_code=500, detail="An error occurred while downloading the video or audio")
 
     # Transcription using GPU-accelerated PyTorch
-    audio_tensor = torch.tensor(audio_filename, device=device)
-    transcript_result = video_processor.transcription(audio_tensor)
+    # audio_tensor = torch.tensor(audio_filename, device=device)
+    # transcript_result = video_processor.transcription(audio_tensor)
 
-    # transcript_result = video_processor.transcription(audio_filename)
+    transcript_result = video_processor.transcription(audio_filename)
 
     response_data = {
         'video_url': video_filename,
@@ -137,10 +137,10 @@ def upload(file: UploadFile = File(...)):
     output_file = video_processor.convert_to_mp3(input_file)
 
     # Transcription using GPU-accelerated PyTorch
-    audio_tensor = torch.tensor(output_file, device=device)
-    transcript_result = video_processor.transcription(audio_tensor)
+    # audio_tensor = torch.tensor(output_file, device=device)
+    # transcript_result = video_processor.transcription(audio_tensor)
     
-    # transcript_result = video_processor.transcription(output_file)
+    transcript_result = video_processor.transcription(output_file)
 
     response_data = {
         'file_name': input_file,
