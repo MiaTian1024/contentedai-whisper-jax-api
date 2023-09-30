@@ -9,9 +9,9 @@ WORKDIR /usr/src/app
 
 RUN pip install -U "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
-RUN apt-get update && apt-get install -y \
-    libcudnn8=8.9.1.24-1+cuda12.2 \
-    && rm -rf /var/lib/apt/lists/*
+RUN pip install git+https://github.com/sanchit-gandhi/whisper-jax.git
+
+RUN pip install --upgrade --no-deps --force-reinstall git+https://github.com/sanchit-gandhi/whisper-jax.git
 
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
