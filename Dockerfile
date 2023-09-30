@@ -1,5 +1,5 @@
 FROM python:3
-FROM nvidia/cuda:12.2-cudnn8-runtime
+FROM nvidia/cuda:12.2.0-runtime-ubuntu22.04
 
 
 # Install FFmpeg
