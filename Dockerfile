@@ -16,6 +16,12 @@ RUN pip install --upgrade --no-deps --force-reinstall git+https://github.com/san
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y libcudnn8=8.9.1.24-1+cuda12.2 && \
+    rm -rf /var/lib/apt/lists/*
+
+
 COPY . .
 
 # Set environment variables if needed
