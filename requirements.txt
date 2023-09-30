@@ -15,5 +15,3 @@ cached_property
 uvicorn==0.23.2
 ffmpeg-python
 python-multipart
-# torch
-# flask
