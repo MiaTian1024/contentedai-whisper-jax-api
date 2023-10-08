@@ -14,6 +14,9 @@ class FileUpload(BaseModel):
 class URL(BaseModel):
     url: str
 
+class Path(BaseModel):
+    path: str
+
 
 app = FastAPI()
 
@@ -95,6 +98,7 @@ video_processor = VideoProcessor()
 async def root():
     return {"message": "Welcome to my API"}
 
+
 @app.post("/process/")
 async def process_video(content: URL):
     # Process a video from a given URL
@@ -153,6 +157,29 @@ async def upload(file: UploadFile = File(...)):
     video_processor.remove_temporary_files(input_file)
     video_processor.remove_temporary_files(output_file)
     
+    return response_data
+
+
+@app.post("/path/")
+async def process_path(content: Path):
+    # Process a video from a given Path
+    path = content.path
+    if not path:
+        raise HTTPException(status_code=400, detail="Invalid Path")
+
+    # concert the audio to mp3, perform transcription
+    audio_file = video_processor.convert_to_mp3(path)
+
+    transcript_result = video_processor.transcription(audio_file)
+
+    response_data = {
+        'path': path,
+        'transcript': transcript_result['text']
+    }
+
+    # Clean up temporary files
+    video_processor.remove_temporary_files(audio_file)
+
     return response_data
 
 
